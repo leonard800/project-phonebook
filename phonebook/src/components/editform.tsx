@@ -124,7 +124,7 @@ const EditForm: React.FC = () => {
             });
 
             for (let i = 0; i < phoneNumbers.length; i++) {
-                const { phoneData } = await editPhoneNumber({
+                await editPhoneNumber({
                     variables: {
                         pk_columns: {
                             number: initialPhone[i].number,
@@ -138,6 +138,8 @@ const EditForm: React.FC = () => {
             if (data && data.update_contact_by_pk) {
                 navigate("/");
             }
+
+
         } catch (error) {
             if (error instanceof Error) {
                 if (

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_CONTACT_WITH_PHONES } from './graphql';
 import { css } from '@emotion/css';
-import { useNavigate } from 'react-router-dom';
 
 const formContainer = css`
   background-color: #f5f5f5;
@@ -69,7 +68,6 @@ const AddContactForm: React.FC = () => {
   const [lastName, setLastName] = useState<string>('');
   const [phoneNumbers, setPhoneNumbers] = useState<string[]>(['']);
   const [errorMsg, setErrorMsg] = useState<boolean>(false);
-  const navigate = useNavigate();
 
   const [addContactWithPhones] = useMutation(ADD_CONTACT_WITH_PHONES);
 
@@ -98,8 +96,7 @@ const AddContactForm: React.FC = () => {
       });
 
       if (data && data.insert_contact) {
-        console.log('Contact added:', data.insert_contact.returning);
-        navigate("/");
+        window.location.href = '/'
       }
     } catch (error) {
         if (error instanceof Error) {
